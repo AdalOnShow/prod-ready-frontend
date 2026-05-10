@@ -2,15 +2,15 @@ import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 
 export const Route = createRootRoute({
   component: () => (
-    <div>
-      <header>
-        <h2>Hello, Vite + React!</h2>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
+    <div className="min-h-screen bg-gray-900 text-gray-50">
+      <header className="flex justify-between p-4 bg-slate-800">
+        <h2 className="text-4xl">Hello, Vite + React!</h2>
+        <nav className="text-2xl space-x-4 m-2">
+          <Link to="/" className="[&.active]:font-bold">Home</Link>
+          <Link to="/about" className="[&.active]:font-bold">About</Link>
         </nav>
       </header>
-      <main>
+      <main className="p-4">
         <Outlet />
       </main>
     </div>
