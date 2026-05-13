@@ -6,8 +6,15 @@ export const Route = createRootRoute({
       <header className="flex justify-between p-4 bg-slate-800">
         <h2 className="text-4xl">Hello, Vite + React!</h2>
         <nav className="text-2xl space-x-4 m-2">
-          <Link to="/" className="[&.active]:font-bold">Home</Link>
-          <Link to="/about" className="[&.active]:font-bold">About</Link>
+          <Link to="/" className="[&.active]:font-bold">
+            Home
+          </Link>
+          <Link to="/about" className="[&.active]:font-bold">
+            About
+          </Link>
+          <Link to="/components-playground" className="[&.active]:font-bold">
+            Playground
+          </Link>
         </nav>
       </header>
       <main className="p-4">

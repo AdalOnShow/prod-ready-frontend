@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ComponentsPlaygroundRouteImport } from './routes/components-playground'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 
+const ComponentsPlaygroundRoute = ComponentsPlaygroundRouteImport.update({
+  id: '/components-playground',
+  path: '/components-playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -25,32 +31,43 @@ const AboutIndexRoute = AboutIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/components-playground': typeof ComponentsPlaygroundRoute
   '/about/': typeof AboutIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/components-playground': typeof ComponentsPlaygroundRoute
   '/about': typeof AboutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/components-playground': typeof ComponentsPlaygroundRoute
   '/about/': typeof AboutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about/'
+  fullPaths: '/' | '/components-playground' | '/about/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about/'
+  to: '/' | '/components-playground' | '/about'
+  id: '__root__' | '/' | '/components-playground' | '/about/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComponentsPlaygroundRoute: typeof ComponentsPlaygroundRoute
   AboutIndexRoute: typeof AboutIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/components-playground': {
+      id: '/components-playground'
+      path: '/components-playground'
+      fullPath: '/components-playground'
+      preLoaderRoute: typeof ComponentsPlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComponentsPlaygroundRoute: ComponentsPlaygroundRoute,
   AboutIndexRoute: AboutIndexRoute,
 }
 export const routeTree = rootRouteImport
