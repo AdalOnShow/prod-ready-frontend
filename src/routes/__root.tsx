@@ -15,6 +15,9 @@ export const Route = createRootRoute({
           <Link to="/components-playground" className="[&.active]:font-bold">
             Playground
           </Link>
+          <Link to="/state-playground" className="[&.active]:font-bold">
+            State
+          </Link>
         </nav>
       </header>
       <main className="p-4">
